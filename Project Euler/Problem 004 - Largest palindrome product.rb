@@ -9,10 +9,20 @@ end
 
 max = 0
 
-for i in 100..999
-  for j in 100..999
+for i in (100..999).reverse_each
+  for j in (100..999).reverse_each
+    # Check if duplicated operation
+    if j < i
+      break
+    end
+    
     number = i*j
-    max = number if (is_palindrome?(number) && number > max) 
+
+    if number <= max
+      break
+    end
+
+    max = number if is_palindrome?(number) 
   end
 end
 
