@@ -8,11 +8,11 @@ def is_prime(number)
   }
 end
 
-def find_smallest_multiple(j, k)
+def find_smallest_multiple_in_range(j, k)
   smallest = 0
-  # Initialize product of all prime numbers in range
-    # Unique factorization theorem indicates that every positive integer greater than 1 can be
-    # written as a product of prime numbers. Using this, we can compute the LCM of the range/counter
+  # Using unique factorization theorem, 'smallest' can be expressed as a product of prime numbers
+  # Since it has to be divisible by 1..20, we can iterate through the product of prime numbers in this range
+  # We use the said product as counter to iterate through numbers to check
   counter = (j..k).reduce(1) {|acc, num|
     is_prime(num) ? acc * num : acc
   } 
@@ -33,6 +33,6 @@ def find_smallest_multiple(j, k)
 end
 
 
-p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 10 is: #{find_smallest_multiple(1, 10)}" #=> 2520
-p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 20 is: #{find_smallest_multiple(1, 20)}" #=> 232792560
-p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 30 is: #{find_smallest_multiple(1, 30)}" #=> 2329089562800
+p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 10 is: #{find_smallest_multiple_in_range(1, 10)}" #=> 2520
+p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 20 is: #{find_smallest_multiple_in_range(1, 20)}" #=> 232792560
+p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 30 is: #{find_smallest_multiple_in_range(1, 30)}" #=> 2329089562800
