@@ -16,24 +16,16 @@ def main
 
   # Brute force
   # Chosen ranges arbitrary
-  powers_array = []
-  exponent_range = 2..9
-
-  for i in 4..100
-    i_powers = exponent_range.reduce([]) {|acc, e| acc << i**e}
-    powers_array << i_powers
-  end
-  powers_array.flatten!.uniq!.sort!
-
   sequence = []
-  powers_array.each {|num|
-    sum = sum_of_digits(num)
-    for i in exponent_range
-      if sum**i == num
-        sequence << num
-      end
+
+  for base in 2..100
+    for exp in 2..9
+      x = base ** exp
+      sequence << x if sum_of_digits(x) == base
     end
-  }
+  end
+
+  sequence.sort!
 
   print "a30 in the said sequence is : #{sequence[30-1]} \n"
   p sequence
