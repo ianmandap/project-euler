@@ -40,6 +40,17 @@ def generate_pythagorean_triplet(goal_sum)
   array_of_triplet
 end
 
-triplet = generate_pythagorean_triplet(1000)
-p "The product of abc is #{triplet.reduce(1) {|prod, e| prod*e}}; Array: #{triplet.to_s}"
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  triplet = generate_pythagorean_triplet(1000)
+  p "The product of abc is #{triplet.reduce(1) {|prod, e| prod*e}}; Array: #{triplet.to_s}"
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
 #=> 31875000; Array: [200, 375, 425]
+# 0.9965406729997994s

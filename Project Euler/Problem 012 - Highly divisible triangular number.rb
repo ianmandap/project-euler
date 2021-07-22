@@ -52,17 +52,28 @@ def count_number_of_factors(num)
   factor_count = hash.values.reduce(1) {|product, exponent| product * (exponent +1)}
 end
 
-answer = 0
-counter = 8 # starting triangular number term to test
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  answer = 0
+  counter = 8 # starting triangular number term to test
 
-while answer == 0
-  triangular_number = generate_triangle_number(counter)
-  no_of_factors = count_number_of_factors(triangular_number)
-  answer = triangular_number if no_of_factors > 500
-  p "#{counter}, #{no_of_factors}"# see progress
+  while answer == 0
+    triangular_number = generate_triangle_number(counter)
+    no_of_factors = count_number_of_factors(triangular_number)
+    answer = triangular_number if no_of_factors > 500
+    p "#{counter}, #{no_of_factors}"# see progress
 
-  counter += 1
+    counter += 1
+  end
+
+  p "The value of the first triangular number to have over 500 divisors is #{answer}"
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
 end
 
-p "The value of the first triangular number to have over 500 divisors is #{answer}"
-#=> 12375
+main
+# 76576500
+# 6.6479374320001625s

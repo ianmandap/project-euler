@@ -23,4 +23,17 @@ def prime_factorization(num)
   factors
 end
 
-p "The largest prime factor of the number 600851475143 is: #{prime_factorization(600851475143).max}" # 6857
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  print "The largest prime factor of the number 600851475143 is: "
+  print "#{prime_factorization(600851475143).max} \n" 
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+# 6857
+# 0.038088982000090255s

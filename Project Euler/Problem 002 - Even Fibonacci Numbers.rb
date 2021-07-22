@@ -16,4 +16,18 @@ def sum_of_even_fibonacci_numbers()
   arr.reduce(0) {|acc, e| e.even? ? acc + e : acc}
 end
 
-p "The sum of the even-valued terms in the Fibonacci sequence whose values do not exceed four million is: #{sum_of_even_fibonacci_numbers}" #=> 4613732
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  
+  print "The sum of the even-valued terms in the Fibonacci sequence whose values "
+  print "do not exceed four million is: #{sum_of_even_fibonacci_numbers} \n"
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+#=> 4613732
+# 2.4251000013464363e-05s

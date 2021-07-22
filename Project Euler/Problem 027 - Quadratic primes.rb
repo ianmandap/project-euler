@@ -73,8 +73,8 @@ def main
   @runtime = finish_time - start_time
 end
 
-# computation takes ~13seconds
 main
+# Problem computed in 15.315606279999884s
 
 print "The product of the coefficients, a and b, for the quadratic expression that produces " 
 print "the maximum no. of primes for consecutive values of n is #{@a*@b}; n**2 + #{@a}n + #{@b}"

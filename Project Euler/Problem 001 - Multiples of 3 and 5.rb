@@ -22,9 +22,21 @@ def sum_of_multiples_of_3_and_5(number)
   answer = sum_of_threes + sum_of_fives - sum_of_LCM
 end
 
-p sum_of_multiples_of_3_and_5(2) == 0
-p sum_of_multiples_of_3_and_5(10) == 23
-p sum_of_multiples_of_3_and_5(100) == 2318
-p sum_of_multiples_of_3_and_5(1000) == 233168
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  p sum_of_multiples_of_3_and_5(2) == 0
+  p sum_of_multiples_of_3_and_5(10) == 23
+  p sum_of_multiples_of_3_and_5(100) == 2318
+  p sum_of_multiples_of_3_and_5(1000) == 233168
+  
+  p "The sum of all multiples of 3 or 5 below 1000 is: #{sum_of_multiples_of_3_and_5(1000)}"
+  
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
 
-p "The sum of all multiples of 3 or 5 below 1000 is: #{sum_of_multiples_of_3_and_5(1000)}"
+main
+# 233168
+# 6.888600000820588e-05s

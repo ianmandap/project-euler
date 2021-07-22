@@ -28,4 +28,16 @@ def sieve(n)
   list_of_primes.reduce(0) {|acc,num| acc+num}
 end
 
-p "The sum of all primes below two million is: #{sieve(2000000)}" #=> 142913828922
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  p "The sum of all primes below two million is: #{sieve(2000000)}"
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+#=> 142913828922
+# 0.5869493519999196s

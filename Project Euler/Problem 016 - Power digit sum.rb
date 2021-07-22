@@ -8,5 +8,17 @@ def power_digit_sum(base, exp)
   array.reduce(0) {|acc, num| acc + num.to_i}
 end
 
-p power_digit_sum(2,15)
-p power_digit_sum(2,1000) #=> 1366
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  p power_digit_sum(2,15)
+  p power_digit_sum(2,1000) #=> 1366
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+# 1366
+# Problem computed in 0.00011805600024672458s

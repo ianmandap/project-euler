@@ -32,7 +32,18 @@ def find_smallest_multiple_in_range(j, k)
   smallest
 end
 
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 10 is: #{find_smallest_multiple_in_range(1, 10)}" #=> 2520
+  p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 20 is: #{find_smallest_multiple_in_range(1, 20)}" #=> 232792560
+  p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 30 is: #{find_smallest_multiple_in_range(1, 30)}" #=> 2329089562800
 
-p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 10 is: #{find_smallest_multiple_in_range(1, 10)}" #=> 2520
-p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 20 is: #{find_smallest_multiple_in_range(1, 20)}" #=> 232792560
-p "The smallest positive number that is evenly divisible by all of the numbers from 1 to 30 is: #{find_smallest_multiple_in_range(1, 30)}" #=> 2329089562800
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+# 232792560
+# 0.0008412379997935204s

@@ -35,7 +35,19 @@ def no_of_routes_in_grid(n)
   grid[n][n]
 end
 
-p no_of_routes_in_grid(2)
-p no_of_routes_in_grid(3)
-p no_of_routes_in_grid(4)
-p no_of_routes_in_grid(20) #=> 137846528820
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+    
+  p no_of_routes_in_grid(2)
+  p no_of_routes_in_grid(3)
+  p no_of_routes_in_grid(4)
+  p no_of_routes_in_grid(20) 
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+#=> 137846528820
+# 0.00047022099988680566s

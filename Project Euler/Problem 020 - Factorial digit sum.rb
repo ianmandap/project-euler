@@ -13,7 +13,19 @@ def sum_of_digits(num)
   array.reduce(0) {|acc, num| acc + num.to_i}
 end
 
-fact = factorial(10) #=> 3628800
-sum_of_digits(fact) #=> 27
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  fact = factorial(10) #=> 3628800
+  sum_of_digits(fact) #=> 27
 
-p "The sum of the digits in the number 100! is #{sum_of_digits(factorial(100))}"
+  p "The sum of the digits in the number 100! is #{sum_of_digits(factorial(100))}"
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+# "The sum of the digits in the number 100! is 648"
+# Problem computed in 0.00010902699978032615s

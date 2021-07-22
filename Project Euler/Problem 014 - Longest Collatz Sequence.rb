@@ -20,16 +20,27 @@ def algorithm_3n_plus_one(num)
   arr.length
 end
 
-longest_chain_number = 1
-longest_chain = 1
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  
+  longest_chain_number = 1
+  longest_chain = 1
 
-(2..1000000).each {|num|
-  cycles = algorithm_3n_plus_one(num)
-  if cycles > longest_chain
-    longest_chain = cycles
-    longest_chain_number = num
-  end
-}
+  (2..1000000).each {|num|
+    cycles = algorithm_3n_plus_one(num)
+    if cycles > longest_chain
+      longest_chain = cycles
+      longest_chain_number = num
+    end
+  }
 
-p "The starting number under 1 million that produces the longest chain is : #{longest_chain_number} with #{longest_chain} terms"
-#=> 837799 with 525 terms
+  p "The starting number under 1 million that produces the longest chain is : #{longest_chain_number} with #{longest_chain} terms"
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+# 837799 with 525 terms
+# Problem computed in 10.473254267999891s
