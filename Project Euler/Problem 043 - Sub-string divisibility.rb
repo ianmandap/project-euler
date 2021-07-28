@@ -19,20 +19,18 @@
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
-  # 1406357289
-  # 0123456789
   arr_pandigitals = [0,1,2,3,4,5,6,7,8,9].permutation.to_a
   arr_pandigitals_divis_substr = []
 
   arr_pandigitals.each {|a|
     next if a[0] == 0
-    next unless a[3].even?                           # check for divisibility by 2
-    next unless [a[2],a[3],a[4]].join.to_i % 3 == 0  # check for divisibility by 3
-    next unless [0,5].include?(a[5])                 # check for divisibility by 5
-    next unless [a[4],a[5],a[6]].join.to_i % 7 == 0  # check for divisibility by 7
-    next unless [a[5],a[6],a[7]].join.to_i % 11 == 0 # check for divisibility by 11
-    next unless [a[6],a[7],a[8]].join.to_i % 13 == 0 # check for divisibility by 13
-    next unless [a[7],a[8],a[9]].join.to_i % 17 == 0 # check for divisibility by 17
+    next unless a[3].even?                  # divisibility by 2
+    next unless a[2..4].join.to_i % 3 == 0  # divisibility by 3
+    next unless [0,5].include?(a[5])        # divisibility by 5
+    next unless a[4..6].join.to_i % 7 == 0  # divisibility by 7
+    next unless a[5..7].join.to_i % 11 == 0 # divisibility by 11
+    next unless a[6..8].join.to_i % 13 == 0 # divisibility by 13
+    next unless a[7..9].join.to_i % 17 == 0 # divisibility by 17
     arr_pandigitals_divis_substr << a.join.to_i
   }
 
@@ -45,3 +43,5 @@ def main
 end
 
 main
+# The sum of all 0-9 pandigitals with the above property is 16695334890 
+# Problem computed in 3.750874271999919s
