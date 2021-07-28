@@ -18,8 +18,8 @@ end
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
   
-  file_name  = "/home/theianmilan/AvionSchool/ruby_portfolio/Project Euler/assets/p022_names.txt"
-  file = File.open(file_name)
+  file_name  = "~/AvionSchool/ruby_portfolio/Project Euler/assets/p022_names.txt"
+  file = File.open(File.expand_path(file_name))
 
   # Transform Data into Array
   file_content = file.read.split('","')
