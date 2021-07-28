@@ -38,10 +38,10 @@ def main
   file.close
 
   # Longest English word Pneumonoultramicroscopicsilicovolcanoconiosis has value of 560
-  # Limit array to n = 35 (561 max)
+  # Limit array to n = 33 (561 max)
   arr_triangle_numbers = gen_seq_of_triangle_numbers(33)
-
   triangle_words = []
+  
   # Test each word in file
   file_content.each {|word|
     value = alphabetical_value(word)
