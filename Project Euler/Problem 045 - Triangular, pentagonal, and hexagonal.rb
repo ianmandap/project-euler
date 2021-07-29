@@ -34,11 +34,11 @@ end
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
-  arr_triangles   = gen_seq_of_triangle_numbers(100000)
+  # Since all hexagonal numbers ARE triangle numbers, we skip triangle numbers
   arr_pentagonals = gen_seq_of_pentagon_numbers(100000)
   arr_hexagonals  = gen_seq_of_hexagon_numbers(100000)
 
-  intersection = arr_triangles & arr_pentagonals & arr_hexagonals
+  intersection = arr_pentagonals & arr_hexagonals
 
   print "The next triangle number after 40755 is #{intersection[2]} \n"
   p intersection
