@@ -1,5 +1,7 @@
+# https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=3&page=show_problem&problem=36
+
 # Problem Statement:
-# Given an inputn, it is possible to determine the number of numbers printed before and including
+# Given an input n, it is possible to determine the number of numbers printed before and including
 # the 1 is printed.  For a given n this is called the cycle-length of n. 
 # For any two numbers i and j, determine the max cycle length over all numbers between
 # and including both i and j
