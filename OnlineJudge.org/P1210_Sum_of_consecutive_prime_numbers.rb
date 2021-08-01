@@ -82,3 +82,13 @@ end
 
 input = "2\n3\n17\n41\n20\n666\n12\n53\n0"
 main(input)
+# Output:
+# 1
+# 1
+# 2
+# 3
+# 0
+# 0
+# 1
+# 2
+# Problem computed in 0.004659817001083866s
