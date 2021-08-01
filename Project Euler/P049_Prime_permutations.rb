@@ -31,67 +31,40 @@ def sieve(n)
   list_of_primes
 end
 
+def permutation?(num1, num2)
+  num1.to_s.split('').sort == num2.to_s.split('').sort
+end
+
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
-  seq = []
-  increment = []
+  # Select no. of digits in prime to be searched
+  digits = 4
+  results = []
 
-  sieve = sieve(10_000)
-  primes_4_digits = sieve.filter { |n| n.to_s.length == 4 }
-  primes_4_digits.each do |n|
-    prime_permutations = []
-    permutations = n.to_s.split('').map(&:to_i).permutation.to_a
+  # Create list of primes
+  sieve = sieve(10**digits)
+  primes = sieve.filter { |n| n.to_s.length == digits }.sort
 
-    permutations.each do |p|
-      permutation = p.join('').to_i
-      if primes_4_digits.include?(permutation)
-        prime_permutations << permutation 
-      end
-    end
-
-    prime_permutations.sort!.uniq!
-
-    # Skip impossible answers
-    if prime_permutations.length <= 2
-      next
-    end
-
-    # Array of differences for each prime permutation
-    for i in 0...(prime_permutations.length)
-      d = []
-      prime_permutations.each do |num|
-        if num == prime_permutations[i]
-          next
-        end
-
-        d << num - prime_permutations[i]
-      end
-  
-      # p "#{n} #{prime_permutations} #{d}"
-  
-      d.each do |diff|
-        if diff == d[i]
-          next
-        end
-        prime_permutations.each do |num|
-          if num == prime_permutations[i]
-            next
-          end
-  
-          third_num = num + diff
-          if prime_permutations.include?(third_num) && (prime_permutations[i] + diff == num)
-            seq << [prime_permutations[i], num, third_num]
-            increment << diff
-          end
+  # Iterate through the list, test each pair of prime
+  for i in 0...primes.length do
+    for j in (i+1)...primes.length do
+      a = primes[i]
+      b = primes[j]
+      # Check if permutation of each other
+      if permutation?(a, b)
+        # Find next in sequence
+        c = 2 * b - a
+        # Check if permutation and if prime
+        if permutation?(c, a) && primes.include?(c)
+          results << [a, b, c]
         end
       end
     end
   end
 
-  ans = seq.uniq![-1].sort
-  p ans
-  puts ans.reduce("") { |str, num|
+  p results
+  puts results[-1].reduce('') {|str, num|
     str << num.to_s
     str
   }
@@ -102,6 +75,6 @@ def main
 end
 
 main
-# [2969, 6299, 9629]
+# [[1487, 4817, 8147], [2969, 6299, 9629]]
 # 296962999629
-# Problem computed in 0.22735142700003053s
+# Problem computed in 1.4842043420003392s
