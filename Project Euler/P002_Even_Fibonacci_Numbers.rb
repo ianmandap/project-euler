@@ -3,11 +3,11 @@
 # by considering the terms in the Fibonacci sequence whose values do not exceed four million,
 # find the sum of the even-valued terms.
 
-def sum_of_even_fibonacci_numbers()
+def sum_of_even_fibonacci_numbers(n)
   arr = [1, 2]
   num = 3
 
-  while num < 4000000
+  while num < n
     arr << num
     old_term = arr[-2]
     new_term = arr[-1]
@@ -18,10 +18,10 @@ end
 
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-  
-  
+
+
   print "The sum of the even-valued terms in the Fibonacci sequence whose values "
-  print "do not exceed four million is: #{sum_of_even_fibonacci_numbers} \n"
+  print "do not exceed four million is: #{sum_of_even_fibonacci_numbers(4_000_000)} \n"
 
   finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
   @runtime = finish_time - start_time
