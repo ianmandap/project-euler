@@ -6,26 +6,29 @@ def prime_factorization(num)
   # Start by testing each integer(using counter) to see if it divides the num and its quotients evenly
   # If divides evenly, save the number and continue
   # If not, increment counter
+  # Limit division operation up to sqrt of num
   factors = []
   counter = 2
-  quotient = num
+  largest = num
 
-  while quotient != 1
-    if quotient % counter == 0 # If evenly divides
-      factors << counter # save counter
-      quotient /= counter
+  while counter <= Math.sqrt(num).floor
+    if largest % counter == 0 # If evenly divides
+      factors << counter # save counter as factor
+      largest /= counter
     else
       counter += 1
     end
-    p factors # show progress
+    # p factors # show progress
   end
-
+  # Add current largest as a prime factor if the
+  # above loop does not reduce it to <= 2
+  factors << largest if largest > 2
   factors
 end
 
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
-  
+
   print "The largest prime factor of the number 600851475143 is: "
   print "#{prime_factorization(600851475143).max} \n" 
 
