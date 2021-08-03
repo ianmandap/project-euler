@@ -48,8 +48,18 @@ module Euler
     list_of_primes
   end
 
+  def factorial(n)
+    (1..n).reduce(1) {|prod, num| prod*num}
+  end
+
   def permutation?(num1, num2)
     num1.to_s.split('').sort == num2.to_s.split('').sort
+  end
+
+  def combinatorics(n, r)
+    num = factorial(n)
+    den = factorial(r) * factorial(n - r)
+    num / den
   end
 
   def sum_of_digits(num)
@@ -60,7 +70,7 @@ module Euler
   def reverse_num(num)
     num.to_s.reverse.to_i
   end
-  
+
   def num_reversible?(num)
     # Check if 0 in ones place
     return false if num % 10 == 0
@@ -84,7 +94,7 @@ module Euler
     end
     arr
   end
-  
+
   def gen_seq_of_triangle_numbers(n)
     arr = []
     for i in 1..n
@@ -92,7 +102,7 @@ module Euler
     end
     arr
   end
-  
+
   def gen_seq_of_hexagon_numbers(n)
     arr = []
     for i in 1..n
