@@ -110,4 +110,12 @@ module Euler
     end
     arr
   end
+
+  def palindrome?(num)
+    num.to_s.reverse == num.to_s
+  end
+
+  def palindrome(num)
+    num.to_s.reverse.to_i
+  end
 end
