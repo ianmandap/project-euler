@@ -49,3 +49,5 @@ def main
 end
 
 main
+# 249
+# Problem computed in 0.05129084399959538s
