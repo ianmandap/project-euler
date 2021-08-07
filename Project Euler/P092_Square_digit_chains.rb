@@ -12,6 +12,16 @@
 require_relative 'euler'
 include Euler
 
+def digit_square(num)
+  product = 0
+  while num > 0
+    digit = num % 10
+    num /= 10
+    product += digit**2
+  end
+  product
+end
+
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
@@ -19,11 +29,7 @@ def main
 
   (1...10_000_000).each do |num|
     loop do
-      num_array = num.to_s.split('')
-      num = num_array.reduce(0) do |arr, n|
-        arr += (n.to_i)**2
-        arr
-      end
+      num = digit_square(num)
 
       if num == 89
         counter += 1
@@ -42,4 +48,4 @@ end
 
 main
 # 8581146
-# Problem computed in 86.41410697299941s
+# Problem computed in 19.167956919998687
