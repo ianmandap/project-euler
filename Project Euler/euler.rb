@@ -30,7 +30,7 @@ module Euler
     range = Array.new(n + 1, true)
     range[0], range[1] = false, false
     p = 2
-  
+
     for i in (2..(n/2))
       if range[i] == true
         counter = 0
@@ -40,12 +40,21 @@ module Euler
         end
       end
     end
-  
+
     list_of_primes = [] 
     range.each_with_index {|bool, idx|
       list_of_primes << idx if bool
     }
     list_of_primes
+  end
+
+  def proper_divisors(n)
+    factors = [1]
+    (2..(n / 2)).each do |num|
+      factors << num if (n % num).zero?
+    end
+
+    factors
   end
 
   def factorial(n)
