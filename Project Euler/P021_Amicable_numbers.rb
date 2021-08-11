@@ -1,16 +1,12 @@
 # Problem Statement
-# If the numbers 1 to 5 are written out in words:
-# one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19
-# letters used in total.
-
-# If all the numbers from 1 to 1000 (one thousand) inclusive
-# were written out in words, how many letters would be used?
-
-# NOTE: Do not count spaces or hyphens.
-# For example, 342 (three hundred and forty-two) contains 23 letters
-# and 115 (one hundred and fifteen) contains 20 letters.
-# The use of "and" when writing out numbers is in compliance
-# with British usage.
+# Let d(n) be defined as the sum of proper divisors of n
+# (numbers less than n which divide evenly into n).
+# If d(a) = b and d(b) = a, where a != b, then a and b are an amicable pair
+# and each of a and b are called amicable numbers.
+# For example, the proper divisors of 220 are
+# 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284.
+# The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+# Evaluate the sum of all the amicable numbers under 10000.
 
 require_relative 'euler'
 include Euler
