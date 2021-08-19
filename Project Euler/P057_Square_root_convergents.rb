@@ -23,13 +23,17 @@ def square_root_convergence_decimal(num)
   1 / (2 + square_root_convergence_decimal(num - 1))
 end
 
-def main
+def initial_main
+  # Using Ruby's Float class and the built-in #rationalize method.
+  # Float numbers will become inaccurate and reach a decimal limit
+  # starting at the 19-20th iteration and so will always produce the
+  # same float after each iteration
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
   ans = 0
-  iterations = 1_000
+  iterations = 25
 
-  (1..8).each do |i|
+  (1..iterations).each do |i|
     n = (1 + square_root_convergence_decimal(i)).rationalize
     ans += 1 if n.numerator.to_s.length > n.denominator.to_s.length
   end
@@ -41,10 +45,33 @@ def main
   puts "Problem computed in #{@runtime}s"
 end
 
-# main
+def main
+  # Implentation using tuple assignment
+  # Compute int numerator and int denominator w/o evaluating float
+  # Expands numerator to 2d + n
+  # Expands denominator to n + d
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
-a1 = (1 + square_root_convergence_decimal(100))
-a2 = (1 + square_root_convergence_decimal(1000))
+  num = 3 # starting at 1st iteration
+  den = 2
+  iterations = 1_000
+  count = 0
 
-p a1
-p a2
+  (2..iterations).each do |_|
+    num, den = (num + 2 * den), (num + den)
+    # Using log10 is faster than converting int to str and comparing length
+    # log10 returns the base which fulfills 10 ** number
+    # Round down bases to integers to compare
+    count += 1 if Math.log10(num).to_i > Math.log10(den).to_i
+  end
+
+  p count
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+# 153
+# Problem computed in 0.002855095000086294s
