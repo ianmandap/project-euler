@@ -9,7 +9,7 @@ module Euler
     factors = []
     counter = 2
     largest = num
-  
+
     while counter <= Math.sqrt(num).floor
       if largest % counter == 0 # If evenly divides
         factors << counter # save counter as factor
@@ -83,16 +83,16 @@ module Euler
   def num_reversible?(num)
     # Check if 0 in ones place
     return false if num % 10 == 0
-  
+
     rev = reverse_num(num)
     sum = rev + num
-  
+
     # Check all digits in sum odd?
     while sum > 1
       return false if sum.to_s[-1].to_i.even? # check every digit place if even
       sum /= 10
     end
-  
+
     return true
   end
 
@@ -126,5 +126,28 @@ module Euler
 
   def palindrome(num)
     num.to_s.reverse.to_i
+  end
+
+  def max_path_sum(matrix, m, n)
+    # Goal points: m, n
+    # Analysis:
+    # From a cell (i, j), you can only traverse:
+    # down (i + 1, j)
+    # right diagonal (i + 1, j + 1)
+
+    # Bottom-up calculation:
+    # Traverse each row starting at the second-to-the-last row
+    # For each non-zero element, check elements below and right diagonal to them
+    # Add the max to said element
+    (0...(m - 1)).reverse_each do |r|
+      (0..n).each do |c|
+        break if matrix[r][c].zero?
+
+        matrix[r][c] += [matrix[r + 1][c], matrix[r + 1][c + 1]].max
+      end
+    end
+
+    # Return point (0, 0) which stores the max sum
+    matrix[0][0]
   end
 end
