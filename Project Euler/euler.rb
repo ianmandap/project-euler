@@ -48,6 +48,18 @@ module Euler
     list_of_primes
   end
 
+  def gcd(a, b)
+    # Greatest common divisor
+    # Long division method
+    # Largest number divided by the next largest;
+    # Acuired number divided by the remainder of the previous;
+    # And so on until the remainder is zero.
+    # When remainder is zero, the divisor is the GCD
+    return b if a.zero?
+
+    gcd(b % a, a)
+  end
+
   def find_divisors(num)
     # Returns divisors of a number excluding itself
     divisors = [1]
@@ -58,6 +70,19 @@ module Euler
     end
 
     divisors.uniq
+  end
+
+  def relatively_primes(num)
+    # Returns array of integers less than n that are coprime to n.
+    # Two integers are coprime if the only positive integer that is a divisor
+    # of both is 1.
+    relatively_prime = []
+
+    (1...num).each do |n|
+      relatively_prime << n if gcd(n, num) == 1
+    end
+
+    relatively_prime
   end
 
   def factorial(n)
