@@ -48,17 +48,20 @@ module Euler
     list_of_primes
   end
 
-  def proper_divisors(n)
-    factors = [1]
-    (2..(n / 2)).each do |num|
-      factors << num if (n % num).zero?
+  def find_divisors(num)
+    # Returns divisors of a number excluding itself
+    divisors = [1]
+    i = 2
+    while i <= Math.sqrt(num)
+      divisors << i << (num / i) if (num % i).zero? # Add both numbers if evenly divides
+      i += 1
     end
 
-    factors
+    divisors.uniq
   end
 
   def factorial(n)
-    (1..n).reduce(1) {|prod, num| prod*num}
+    (1..n).reduce(1) { |prod, num| prod * num }
   end
 
   def permutation?(num1, num2)

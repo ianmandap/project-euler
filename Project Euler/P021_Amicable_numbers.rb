@@ -10,6 +10,7 @@
 
 require_relative 'euler'
 include Euler
+# Import find_divisors method
 
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
@@ -18,8 +19,8 @@ def main
   (10...10_000).each do |num|
     next if amicable_nums.include?(num)
 
-    da = proper_divisors(num).sum
-    db = proper_divisors(da).sum unless da == num
+    da = find_divisors(num).sum
+    db = find_divisors(da).sum unless da == num
     amicable_nums << da << db if db == num
   end
 
@@ -34,4 +35,4 @@ end
 main
 # [284, 220, 1210, 1184, 2924, 2620, 5564, 5020, 6368, 6232]
 # 31626
-# Problem computed in 2.9917327889997978s
+# Problem computed in 0.13413736400002563s

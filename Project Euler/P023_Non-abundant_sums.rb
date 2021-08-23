@@ -17,16 +17,9 @@
 # Find the sum of all the positive integers which cannot be written
 # as the sum of two abundant numbers.
 
-def find_divisors(num)
-  divisors = [1]
-  i = 2
-  while i <= Math.sqrt(num)
-    divisors << i << (num / i) if (num % i).zero? # Add both numbers if evenly divides
-    i += 1
-  end
-
-  divisors.uniq
-end
+require_relative 'euler'
+include Euler
+# Import find_divisors method
 
 def main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
@@ -54,4 +47,4 @@ end
 
 main
 # 4179871
-# Problem computed in 8.37659948900182s
+# Problem computed in 7.980335425000021s
