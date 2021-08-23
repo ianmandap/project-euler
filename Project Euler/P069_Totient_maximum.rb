@@ -56,6 +56,10 @@ def main
   puts "Problem computed in #{@runtime}s"
 end
 
-main
+# main
 # 510510
+# Or simply realize that to have max n/phi(n), num would need to have a small phi(n);
+# To have a small phi(n), num would need many prime factors;
+# As such the max number that has factors of many unique primes less than the limit is:
+# 2 * 3 * 5 * 7 * 11 * 13 * 17 = 510510
 # Problem computed in 578.0446773410004s
