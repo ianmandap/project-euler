@@ -28,24 +28,36 @@ module Euler
   def sieve(n)
     # Array of true values, indexed by integers 2 to n
     range = Array.new(n + 1, true)
-    range[0], range[1] = false, false
+    range[0] = false
+    range[1] = false
     p = 2
 
-    for i in (2..(n/2))
-      if range[i] == true
-        counter = 0
-        while (i**2 + (i * counter)) <= n
-          range[i**2 + (i * counter)] = false
-          counter += 1
-        end
+    (2..(n / 2)).each do |i|
+      next unless range[i] == true
+
+      counter = 0
+      while (i**2 + (i * counter)) <= n
+        range[i**2 + (i * counter)] = false
+        counter += 1
       end
     end
 
-    list_of_primes = [] 
-    range.each_with_index {|bool, idx|
+    list_of_primes = []
+    range.each_with_index do |bool, idx|
       list_of_primes << idx if bool
-    }
+    end
     list_of_primes
+  end
+
+  def is_prime_simple?(number)
+    # O(sqrt(N))
+    return false if number < 2
+    return true if [2, 3].include?(number)
+
+    (2...Math.sqrt(number)).each do |num|
+      return false if number % num == 0
+    end
+    true
   end
 
   def gcd(a, b)
@@ -101,7 +113,7 @@ module Euler
 
   def sum_of_digits(num)
     array = num.to_s.split('')
-    array.reduce(0) {|acc, num| acc + num.to_i}
+    array.reduce(0) { |acc, num| acc + num.to_i }
   end
 
   def reverse_num(num)
@@ -118,32 +130,33 @@ module Euler
     # Check all digits in sum odd?
     while sum > 1
       return false if sum.to_s[-1].to_i.even? # check every digit place if even
+
       sum /= 10
     end
 
-    return true
+    true
   end
 
   def gen_seq_of_pentagon_numbers(n)
     arr = []
-    for i in 1..n
-      arr << i*(3*i-1)/2
+    (1..n).each do |i|
+      arr << i * (3 * i - 1) / 2
     end
     arr
   end
 
   def gen_seq_of_triangle_numbers(n)
     arr = []
-    for i in 1..n
-      arr << ((i+1)*0.5*i).to_i
+    (1..n).each do |i|
+      arr << ((i + 1) * 0.5 * i).to_i
     end
     arr
   end
 
   def gen_seq_of_hexagon_numbers(n)
     arr = []
-    for i in 1..n
-      arr << i*(2*i - 1)
+    (1..n).each do |i|
+      arr << i * (2 * i - 1)
     end
     arr
   end
