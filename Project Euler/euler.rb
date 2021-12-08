@@ -191,4 +191,8 @@ module Euler
     # Return point (0, 0) which stores the max sum
     matrix[0][0]
   end
+
+  def number_to_array(num)
+    num.to_s.split('').map(&:to_i)
+  end
 end
