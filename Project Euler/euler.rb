@@ -195,4 +195,9 @@ module Euler
   def number_to_array(num)
     num.to_s.split('').map(&:to_i)
   end
+
+  def cyclical?(n_digits, num1, num2)
+    # Compare last n_digits of num1 to first n_digits of num2 to determine cyclical property
+    number_to_array(num1)[-n_digits..] == number_to_array(num2)[0...n_digits]
+  end
 end
