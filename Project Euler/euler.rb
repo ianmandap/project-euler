@@ -98,7 +98,11 @@ module Euler
   end
 
   def factorial(n)
-    (1..n).reduce(1) { |prod, num| prod * num }
+    if n < 2
+      1
+    else
+      n * factorial(n - 1)
+    end
   end
 
   def permutation?(num1, num2)
