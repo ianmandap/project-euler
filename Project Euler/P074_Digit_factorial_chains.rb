@@ -37,7 +37,7 @@ def count_digit_factorial_chain(num)
   count
 end
 
-def main
+def brute_main
   start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
 
   exactly_60 = 0
@@ -53,7 +53,50 @@ def main
   puts "Problem computed in #{@runtime}s"
 end
 
-main
+# brute_main
 # 402
 # Problem computed in 116.22973832200023s
 # Brute force solution: checking of all numbers 1..1_000_000
+
+def main
+  start_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+
+  # Instantiate hash to avoid recomputing numbers more than once
+  # When computing a number's chain, also store the value for the other numbers found
+  # E.g. 69 → 363600 → 1454 → 169 → 363601 (→ 1454)
+  # 69     → 5
+  # 363600 → 4
+  # 1454   → 3
+  # 169    → 2
+  # 363601 → 1
+  hash = {}
+
+  # Iterate through all numbers
+  (1...1_000_000).each do |num|
+    next unless hash[num].nil?
+
+    # Build chain
+    arr = [num]
+
+    loop do
+      computed = 0
+      number_to_array(arr[-1]).each { |e| computed += factorial(e) }
+      break if arr.include?(computed)
+
+      arr << computed
+    end
+
+    # Assign value for items in chain
+    arr.each_with_index { |e, i| hash[e] = (arr.size - i) }
+  end
+
+  p(hash.values.count { |e| e == 60 })
+
+  finish_time = Process.clock_gettime(Process::CLOCK_MONOTONIC)
+  @runtime = finish_time - start_time
+  puts "Problem computed in #{@runtime}s"
+end
+
+main
+# 402
+# Problem computed in 68.59196107499974s
