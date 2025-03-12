@@ -26,11 +26,11 @@ module Euler
   end
 
   def sieve(n)
+    # Create list of prime numbers up to n
     # Array of true values, indexed by integers 2 to n
     range = Array.new(n + 1, true)
     range[0] = false
     range[1] = false
-    p = 2
 
     (2..(n / 2)).each do |i|
       next unless range[i] == true
@@ -55,7 +55,7 @@ module Euler
     return true if [2, 3].include?(number)
 
     (2...Math.sqrt(number)).each do |num|
-      return false if number % num == 0
+      return false if (num % 10).zero?
     end
     true
   end
@@ -117,7 +117,7 @@ module Euler
 
   def sum_of_digits(num)
     array = num.to_s.split('')
-    array.reduce(0) { |acc, num| acc + num.to_i }
+    array.reduce(0) { |acc, n| acc + n.to_i }
   end
 
   def reverse_num(num)
@@ -126,7 +126,7 @@ module Euler
 
   def num_reversible?(num)
     # Check if 0 in ones place
-    return false if num % 10 == 0
+    return false if (num % 10).zero?
 
     rev = reverse_num(num)
     sum = rev + num
