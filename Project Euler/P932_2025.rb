@@ -43,10 +43,31 @@ class P932
     max = Math.sqrt(@max_num).to_i
 
     (9..max).each do |num|
-      puts_percentage(num, max)
       square = num**2
+      # can optimize by only including perfect squares (m**2) where m = 0, 1 (mod 9)
+      # because splitting the numbers preserves their digit-sum
+      next unless [0, 1].include?(num % 9)
+
+      puts_percentage(num, max)
 
       x, y = half_str(square.to_s)
+      @list << square if num == x + y && square.to_s == [x, y].join('')
+    end
+  end
+
+  def solve2
+    # alternate solution: use #divmod to split the number
+    max = Math.sqrt(@max_num).to_i
+
+    (9..max).each do |num|
+      square = num**2
+      next unless [0, 1].include?(num % 9)
+
+      puts_percentage(num, max)
+
+      exp = square.to_s.size / 2
+      exp += 1 if square.to_s.size.odd?
+      x, y = square.divmod(10**exp)
       @list << square if num == x + y && square.to_s == [x, y].join('')
     end
   end
@@ -59,4 +80,4 @@ end
 # P932.new(4) #=> 5131 [81, 2025, 3025]
 P932.new(16)
 # "T(16) = [REDACTED]"
-# Problem computed in 331.6096370000014s
+# Problem computed in 69.06742600000143s
